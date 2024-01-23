@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <script src="../node_modules/construct-style-sheets-polyfill/dist/adoptedStyleSheets.js"></script>
+    <script type="esms-options">
+            {
+            "shimMode": true
+            }
+        </script>
+    <script src="../node_modules/es-module-shims/dist/es-module-shims.js"></script>
+    <script>
+        const importMap = {
+            imports: {
+                "@node-projects/base-custom-webcomponent": "./node_modules/@node-projects/base-custom-webcomponent/"
+            }
+        };
+        importShim.addImportMap(importMap);
+
+        importShim('../dist/index.js');
+    </script>
+</head>
+
+<body style="overflow: hidden; padding: none;">
+    <node-projects-slidershow interval="5000" style="position: absolute; width: 100%; height: 100%;">
+        <div>Test Div 1</div>
+        <div>
+            <div>row 1</div>
+            <div>row 2</div>
+        </div>
+        <div>Test Div 2</div>
+        <button style="width: 100px; height: 30px;">Click Me</button>
+        <span>Hello World</span>
+    </node-projects-slidershow>
+</body>
+
+</html>
