@@ -1,7 +1,7 @@
 import { DefaultPlacementService, IDesignItem, IPlacementView, IPoint } from "@node-projects/web-component-designer";
 import { AutomaticSliderShowWebcomponent } from "../slider/AutomaticSliderShowWebcomponent";
 
-export default class TabPlacementService extends DefaultPlacementService {
+export default class SliderShowPlacementService extends DefaultPlacementService {
     override serviceForContainer(container: IDesignItem, containerStyle: CSSStyleDeclaration) {
         if (container.element instanceof AutomaticSliderShowWebcomponent)
             return true;
