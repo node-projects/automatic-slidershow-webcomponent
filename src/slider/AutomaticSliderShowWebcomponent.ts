@@ -122,13 +122,14 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
     ready() {
         this._parseAttributesToProperties();
         let count = 1;
-        for (let item of this.children as unknown as HTMLElement[]) {
+        for (let index = 0; index < this.children.length; index++) {
             const dotElement = document.createElement('div');
             dotElement.className = "dot-element";
             dotElement.id = "dot-element-" + count;
             this._dots.appendChild(dotElement);
             count++;
         }
+
         (<HTMLDivElement>this._dots.children[0]).classList.add("dot-active");
 
         (<HTMLDivElement>this._getDomElement('left-arrow')).onclick = () => this.prevSlide();
