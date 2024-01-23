@@ -23,7 +23,7 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
             
             .slideshow-container{
                 grid-area: 1 / 1 / 2 / 2;
-                width: calc(100% - 20px);
+                width: 100%;
                 height: 100%;
                 border: 1px solid grey;
                 overflow: hidden;
@@ -109,7 +109,7 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
 
     connectedCallback() {
         this._observer.observe(this, { childList: true });
-        this._interval = parseInt(this.getAttribute('interval'));
+        this._interval = parseInt(this.getAttribute('interval')) || this._interval;
         this._initializeSlider();
     }
 
