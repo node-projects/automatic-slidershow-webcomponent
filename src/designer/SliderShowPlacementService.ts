@@ -9,6 +9,9 @@ export default class SliderShowPlacementService extends DefaultPlacementService 
     }
 
     override enterContainer(container: IDesignItem, items: IDesignItem[]) {
+
+        super.enterContainer(container, items);
+
         for (let i of items) {
             if (i.hasStyle('position'))
                 i.removeStyle('position');

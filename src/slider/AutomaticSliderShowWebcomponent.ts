@@ -130,9 +130,14 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
         this._showSlides();
     }
 
-    _refreshContent() {
+    private _refreshContent() {
         this._dots.innerHTML = "";
         this._slideIndex = 0;
+    }
+
+    setSlideIndex(index: number) {
+        this._slideIndex = index;
+        this._showSlides();
     }
 
     private _showSlides() {
@@ -146,11 +151,14 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
             const dotElement = document.createElement('div');
             dotElement.className = "dot-element";
             dotElement.id = "dot-element-" + count;
+            dotElement.addEventListener('click', () => this.setSlideIndex(index));
             this._dots.appendChild(dotElement);
             count++;
         }
 
-        (<HTMLDivElement>this._dots.children[this._slideIndex]).classList.add("dot-active");
+        if ((<HTMLDivElement>this._dots).children.length != 0) {
+            (<HTMLDivElement>this._dots.children[this._slideIndex]).classList.add("dot-active");
+        }
 
         let i = 0;
         for (const item of this.children as any as HTMLElement[]) {
