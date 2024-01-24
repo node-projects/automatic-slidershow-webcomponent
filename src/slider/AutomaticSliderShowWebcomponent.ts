@@ -92,7 +92,7 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
 
     private _dots: HTMLDivElement;
     private _slideIndex = 0;
-    private _interval: number = 2000;
+    private _interval: number = 0;
     private _timeoutId: any;
     private _observer: MutationObserver;
 
@@ -166,8 +166,10 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
 
         this._slideIndex++;
         // console.log(this._slideIndex);
-        clearTimeout(this._timeoutId);
-        this._timeoutId = setTimeout(() => this._showSlides(), this._interval);
+        if (this._interval != 0) {
+            clearTimeout(this._timeoutId);
+            this._timeoutId = setTimeout(() => this._showSlides(), this._interval);
+        }
     }
 
     prevSlide() {
