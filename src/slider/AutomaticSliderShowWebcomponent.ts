@@ -121,17 +121,6 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
 
     ready() {
         this._parseAttributesToProperties();
-        let count = 1;
-        for (let index = 0; index < this.children.length; index++) {
-            const dotElement = document.createElement('div');
-            dotElement.className = "dot-element";
-            dotElement.id = "dot-element-" + count;
-            this._dots.appendChild(dotElement);
-            count++;
-        }
-
-        (<HTMLDivElement>this._dots.children[0]).classList.add("dot-active");
-
         (<HTMLDivElement>this._getDomElement('left-arrow')).onclick = () => this.prevSlide();
         (<HTMLDivElement>this._getDomElement('right-arrow')).onclick = () => this.nextSlide();
     }
@@ -150,6 +139,18 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
         if (this._slideIndex >= this.children.length) {
             this._slideIndex = 0;
         }
+
+        let count = 1;
+        this._dots.innerHTML = "";
+        for (let index = 0; index < this.children.length; index++) {
+            const dotElement = document.createElement('div');
+            dotElement.className = "dot-element";
+            dotElement.id = "dot-element-" + count;
+            this._dots.appendChild(dotElement);
+            count++;
+        }
+
+        (<HTMLDivElement>this._dots.children[this._slideIndex]).classList.add("dot-active");
 
         let i = 0;
         for (const item of this.children as any as HTMLElement[]) {
