@@ -1,5 +1,5 @@
 import { IDesignerCanvas, IElementInteractionService } from "@node-projects/web-component-designer";
-import { AutomaticSliderShowWebcomponent } from "../slider/AutomaticSliderShowWebcomponent";
+import { AutomaticSliderShowWebcomponent } from "../slider/AutomaticSliderShowWebcomponent.js";
 
 export default class ElementInteractionService implements IElementInteractionService {
     stopEventHandling(designerCanvas: IDesignerCanvas, event: PointerEvent, currentElement: Element) {
