@@ -13,17 +13,27 @@
                     "members": [
                         {
                             "kind": "property",
-                            "name": "_slideIndex",
+                            "name": "slideIndex",
                             "type": {
                                 "text": "number"
                             }
                         },
                         {
                             "kind": "property",
-                            "name": "_interval",
+                            "name": "interval",
                             "type": {
                                 "text": "number"
                             }
+                        }
+                    ],
+                    "attributes": [
+                        {
+                            "name": "slide-index",
+                            "fieldName": "slideIndex"
+                        },
+                        {
+                            "name": "interval",
+                            "fieldName": "interval"
                         }
                     ],
                     "superclass": {
