@@ -87,12 +87,13 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
     public static readonly is = 'node-projects-slidershow';
 
     public static properties = {
-
+        slideIndex: Number,
+        interval: Number
     }
 
     private _dots: HTMLDivElement;
-    private _slideIndex = 0;
-    private _interval: number = 0;
+    private slideIndex = 0;
+    private interval: number = 0;
     private _timeoutId: any;
     private _observer: MutationObserver;
 
@@ -109,7 +110,7 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
 
     connectedCallback() {
         this._observer.observe(this, { childList: true });
-        this._interval = parseInt(this.getAttribute('interval')) || this._interval;
+        this.interval = parseInt(this.getAttribute('interval')) || this.interval;
         this._initializeSlider();
     }
 
@@ -132,17 +133,17 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
 
     private _refreshContent() {
         this._dots.innerHTML = "";
-        this._slideIndex = 0;
+        this.slideIndex = 0;
     }
 
     setSlideIndex(index: number) {
-        this._slideIndex = index;
+        this.slideIndex = index;
         this._showSlides();
     }
 
     private _showSlides() {
-        if (this._slideIndex >= this.children.length) {
-            this._slideIndex = 0;
+        if (this.slideIndex >= this.children.length) {
+            this.slideIndex = 0;
         }
 
         let count = 1;
@@ -157,46 +158,46 @@ export class AutomaticSliderShowWebcomponent extends BaseCustomWebComponentConst
         }
 
         if ((<HTMLDivElement>this._dots).children.length != 0) {
-            (<HTMLDivElement>this._dots.children[this._slideIndex]).classList.add("dot-active");
+            (<HTMLDivElement>this._dots.children[this.slideIndex]).classList.add("dot-active");
         }
 
         let i = 0;
         for (const item of this.children as any as HTMLElement[]) {
-            item.setAttribute('slot', i === this._slideIndex ? 'main' : '');
+            item.setAttribute('slot', i === this.slideIndex ? 'main' : '');
             i++;
         }
 
         i = 0;
         for (const dot of this._dots.children as any as HTMLElement[]) {
-            dot.style.background = i === this._slideIndex ? 'darkgrey' : 'lightgray';
+            dot.style.background = i === this.slideIndex ? 'darkgrey' : 'lightgray';
             i++;
         }
 
-        this._slideIndex++;
+        this.slideIndex++;
         // console.log(this._slideIndex);
-        if (this._interval != 0) {
+        if (this.interval != 0) {
             clearTimeout(this._timeoutId);
-            this._timeoutId = setTimeout(() => this._showSlides(), this._interval);
+            this._timeoutId = setTimeout(() => this._showSlides(), this.interval);
         }
     }
 
     prevSlide() {
-        this._slideIndex = this._slideIndex - 2;
-        if (this._slideIndex < 0) {
-            this._slideIndex = this.children.length - 1;
+        this.slideIndex = this.slideIndex - 2;
+        if (this.slideIndex < 0) {
+            this.slideIndex = this.children.length - 1;
         }
         this._showSlides();
     }
 
     nextSlide() {
-        if (this._slideIndex >= this.children.length) {
-            this._slideIndex = 0;
+        if (this.slideIndex >= this.children.length) {
+            this.slideIndex = 0;
         }
         this._showSlides();
     }
 
     public refresh() {
-        this._slideIndex = 0;
+        this.slideIndex = 0;
         this._showSlides();
     }
 }
